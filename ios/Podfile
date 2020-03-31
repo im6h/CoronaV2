@@ -43,7 +43,6 @@ target 'CoronaV2' do
   pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
   pod 'RNGestureHandler', :path => "../node_modules/react-native-gesture-handler"
 
-
   pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
   pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'

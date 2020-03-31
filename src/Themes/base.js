@@ -4,6 +4,7 @@ const base = {
     borderWidth: 0.3,
     borderColor: colors.borderCard,
     borderRadius: 4,
+    margin: 2,
   },
   shadow: {
     shadowColor: '#000',
