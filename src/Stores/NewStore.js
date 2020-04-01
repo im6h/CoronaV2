@@ -12,7 +12,7 @@ class NewStore {
         this.listNews = response.data.items;
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 }

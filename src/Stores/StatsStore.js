@@ -13,7 +13,7 @@ class StatsStore {
         this.statsGlobal = response.data;
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
@@ -24,7 +24,7 @@ class StatsStore {
         this.statsTopCountry = response.data;
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
@@ -35,7 +35,7 @@ class StatsStore {
         this.statsCountryByCode = response.data[0];
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 
@@ -50,7 +50,7 @@ class StatsStore {
         this.statsCountryByCodeAndDate = response.data;
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   }
 }

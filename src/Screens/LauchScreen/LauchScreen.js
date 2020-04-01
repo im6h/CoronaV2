@@ -1,62 +1,149 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import TableStatsCountry from './TableStatsCountry';
 import fonts from '../../Themes/fonts';
 import base from '../../Themes/base';
 import colors from '../../Themes/colors';
 import {observer, inject} from 'mobx-react';
+import accounting from 'accounting';
+import IconIonicons from 'react-native-vector-icons/Ionicons';
 @inject('statsStore')
 @observer
 class LaunchScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: this.props.statsStore.statsGlobal,
+      isLoading: true,
+      data: [],
+      textSearch: '',
     };
   }
   async componentDidMount(): void {
-    await this.fetchStatsGlobal();
-    await this.fetchStatsTopCountry();
+    await this.triggerUpdate();
   }
 
   /**
    * function support
    */
-
+  triggerUpdate = async () => {
+    await this.fetchStatsGlobal();
+    await this.fetchStatsTopCountry();
+  };
   fetchStatsGlobal = async () => {
     await this.props.statsStore.getStatsGlobal();
   };
   fetchStatsTopCountry = async () => {
-    await this.props.statsStore.getStatsTopCountry();
+    this.props.statsStore.getStatsTopCountry().then(() => {
+      this.setState({
+        isLoading: false,
+        data: this.props.statsStore.statsTopCountry,
+      });
+    });
+  };
+  changeText = (text) => {
+    // let filterCountry = this.state.data.filter(country => count)
+    this.setState({
+      textSearch: text,
+    });
   };
   /**
    * render view
    * @return {*}
    */
   render() {
+    let confirmed = accounting.formatNumber(
+      this.props.statsStore.statsGlobal.totalConfirmed,
+    );
+    let deaths = accounting.formatNumber(
+      this.props.statsStore.statsGlobal.totalDeaths,
+    );
+    let recovered = accounting.formatNumber(
+      this.props.statsStore.statsGlobal.totalRecovered,
+    );
     return (
       <View style={styles.container}>
-        <View style={styles.statsGlobal}>
-          <View style={styles.confirmCard}>
-            <Text style={[styles.textNumber, [{color: colors.red}]]}>
-              {this.state.number.totalConfirmed}
-            </Text>
-            <Text>Confirm</Text>
-          </View>
-          <View style={styles.deathCard}>
-            <Text style={[styles.textNumber, [{color: colors.gray}]]}>
-              {this.state.number.totalDeaths}
-            </Text>
-            <Text>Death</Text>
-          </View>
-          <View style={styles.recoveredCard}>
-            <Text style={[styles.textNumber, [{color: colors.green}]]}>
-              {this.state.number.totalRecovered}
-            </Text>
-            <Text>Recovered</Text>
-          </View>
+        <View style={styles.searchInput}>
+          <TextInput
+            ref="textInput"
+            style={styles.input}
+            placeholder="Search country"
+            onChangeText={(text) => this.changeText(text)}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              this.refs.textInput.focus();
+            }}>
+            <IconIonicons name="ios-search" size={24} color={colors.gray} />
+          </TouchableOpacity>
         </View>
-        <View style={styles.statsTable}>{/*<TableStatsCountry />*/}</View>
+        {this.state.textSearch.length > 0 ? (
+          <View style={{flex: 0}} />
+        ) : (
+          <View style={styles.statsGlobal}>
+            <View style={styles.confirmCard}>
+              <Text style={[styles.textNumber, [{color: colors.red}]]}>
+                {confirmed}
+              </Text>
+              <View style={{flexDirection: 'row'}}>
+                <View
+                  style={{
+                    height: 20,
+                    width: 20,
+                    backgroundColor: colors.red,
+                    marginRight: 4,
+                  }}
+                />
+                <Text>Confirmed</Text>
+              </View>
+            </View>
+            <View style={styles.deathCard}>
+              <Text style={[styles.textNumber, [{color: colors.gray}]]}>
+                {deaths}
+              </Text>
+              <View style={{flexDirection: 'row'}}>
+                <View
+                  style={{
+                    height: 20,
+                    width: 20,
+                    backgroundColor: colors.gray,
+                    marginRight: 4,
+                  }}
+                />
+                <Text>Deaths</Text>
+              </View>
+            </View>
+            <View style={styles.recoveredCard}>
+              <Text style={[styles.textNumber, [{color: colors.green}]]}>
+                {recovered}
+              </Text>
+              <View style={{flexDirection: 'row'}}>
+                <View
+                  style={{
+                    height: 20,
+                    width: 20,
+                    backgroundColor: colors.green,
+                    marginRight: 4,
+                  }}
+                />
+                <Text>Recovered</Text>
+              </View>
+            </View>
+          </View>
+        )}
+
+        <View style={styles.statsTable}>
+          <TableStatsCountry
+            isLoading={this.state.isLoading}
+            statsGlobalTopCountry={this.state.data}
+            update={this.triggerUpdate()}
+          />
+        </View>
       </View>
     );
   }
@@ -64,12 +151,24 @@ class LaunchScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 4,
+  },
+  searchInput: {
+    flex: 0.8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...base.border,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  input: {
+    flex: 1,
   },
   statsGlobal: {
     flex: 2,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 4,
   },
   statsTable: {
     flex: 8,

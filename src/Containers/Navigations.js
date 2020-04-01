@@ -15,8 +15,13 @@ const Navigations = () => {
           return <Icon name="navicon" size={25} />;
         }}>
         <Scene key="rootScene">
-          <Scene key="launchScreen" component={LaunchScreen} title="Stats" />
-          <Scene key="newScreen" component={NewScreen} initial title="News" />
+          <Scene
+            key="launchScreen"
+            component={LaunchScreen}
+            initial
+            title="Stats"
+          />
+          <Scene key="newScreen" component={NewScreen} title="News" />
           <Scene
             key="newDetail"
             component={NewScreenDetail}
