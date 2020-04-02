@@ -24,7 +24,7 @@ class LaunchScreen extends React.Component {
       textSearch: '',
     };
   }
-  async componentDidMount(): void {
+  async componentDidMount() {
     await this.triggerUpdate();
   }
 
@@ -42,16 +42,21 @@ class LaunchScreen extends React.Component {
     this.props.statsStore.getStatsTopCountry().then(() => {
       this.setState({
         isLoading: false,
-        data: this.props.statsStore.statsTopCountry,
       });
     });
   };
-  changeText = (text) => {
-    // let filterCountry = this.state.data.filter(country => count)
+  changeText = () => {
+    let filterData = this.props.statsStore.statsTopCountry.filter((country) => {
+      return String(country.country)
+        .toLowerCase()
+        .includes(this.state.textSearch.toLowerCase());
+    });
+    console.log(filterData);
     this.setState({
-      textSearch: text,
+      data: filterData,
     });
   };
+
   /**
    * render view
    * @return {*}
@@ -69,18 +74,27 @@ class LaunchScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.searchInput}>
-          <TextInput
-            ref="textInput"
-            style={styles.input}
-            placeholder="Search country"
-            onChangeText={(text) => this.changeText(text)}
-          />
           <TouchableOpacity
             onPress={() => {
               this.refs.textInput.focus();
             }}>
             <IconIonicons name="ios-search" size={24} color={colors.gray} />
           </TouchableOpacity>
+          <TextInput
+            ref="textInput"
+            style={styles.input}
+            placeholder="Search country"
+            onChangeText={(text) => {
+              this.setState(
+                {
+                  textSearch: text,
+                },
+                () => {
+                  this.changeText();
+                },
+              );
+            }}
+          />
         </View>
         {this.state.textSearch.length > 0 ? (
           <View style={{flex: 0}} />
@@ -140,8 +154,12 @@ class LaunchScreen extends React.Component {
         <View style={styles.statsTable}>
           <TableStatsCountry
             isLoading={this.state.isLoading}
-            statsGlobalTopCountry={this.state.data}
-            update={this.triggerUpdate()}
+            extraData={this.state.data}
+            statsGlobalTopCountry={
+              this.state.data.length > 0
+                ? this.state.data
+                : this.props.statsStore.statsTopCountry
+            }
           />
         </View>
       </View>
@@ -164,6 +182,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    marginLeft: 10,
   },
   statsGlobal: {
     flex: 2,

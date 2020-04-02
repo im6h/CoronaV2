@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import colors from '../../Themes/colors';
 import fonts from '../../Themes/fonts';
 import Flag from 'react-native-flags';
@@ -10,7 +10,7 @@ const ItemRow = ({item}) => {
   let deaths = accounting.formatNumber(item.totalDeaths);
   let recovered = accounting.formatNumber(item.totalRecovered);
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <View style={styles.columnCountry}>
         <Flag code={flag} size={32} />
         <Text style={styles.textCountry}>{item.country}</Text>
@@ -30,7 +30,7 @@ const ItemRow = ({item}) => {
           {recovered}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 const styles = StyleSheet.create({
