@@ -3,8 +3,8 @@ import {action, observable} from 'mobx';
 class StatsStore {
   @observable statsGlobal = {};
   @observable statsTopCountry = [];
-  @observable statsCountryByCode = [];
-  @observable statsCountryByCodeAndDate = {};
+  @observable statsCountryByCode = {};
+  @observable statsCountryByCodeAndDate = [];
 
   @action async getStatsGlobal() {
     try {
@@ -39,12 +39,10 @@ class StatsStore {
     }
   }
 
-  @action async getStatsCountryByCodeAndDate(countryCode, month, date) {
+  @action async getStatsCountryByCodeAndDate(countryCode) {
     try {
       const response = await apiCorona.getStatsCountryByCodeAndDate(
         countryCode,
-        month,
-        date,
       );
       if (response.status === 200 && response.data) {
         this.statsCountryByCodeAndDate = response.data;

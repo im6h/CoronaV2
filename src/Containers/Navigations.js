@@ -4,6 +4,7 @@ import DrawerComponent from '../Components/DrawerComponent';
 import LaunchScreen from '../Screens/LauchScreen/LauchScreen';
 import NewScreen from '../Screens/NewScreen/NewScreen';
 import NewScreenDetail from '../Screens/NewScreen/NewScreenDetail';
+import StatsScreen from '../Screens/StatsScreen/StatsScreen';
 import Icon from 'react-native-vector-icons/EvilIcons';
 const Navigations = () => {
   return (
@@ -26,7 +27,9 @@ const Navigations = () => {
             key="newDetail"
             component={NewScreenDetail}
             hideNavBar={true}
+            back={true}
           />
+          <Scene key="statsScreen" component={StatsScreen} back={true} />
         </Scene>
       </Drawer>
     </Router>
