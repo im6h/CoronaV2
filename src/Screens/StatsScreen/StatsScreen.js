@@ -7,6 +7,7 @@ import colors from '../../Themes/colors';
 import base from '../../Themes/base';
 import {inject, observer} from 'mobx-react';
 import accounting from 'accounting';
+import moment from 'moment';
 import _ from 'lodash';
 import PureChart from 'react-native-pure-chart';
 
@@ -33,6 +34,12 @@ class StatsScreen extends React.Component {
   fetchStatsCountryByCodeAndDate = async () => {
     await this.props.statsStore.getStatsCountryByCodeAndDate(
       this.props.country.countryCode,
+      moment(
+        moment()
+          .subtract(14, 'days')
+          .calendar(),
+      ).format('YYYY-MM-DD'),
+      moment().format('YYYY-MM-DD'),
     );
   };
   /**

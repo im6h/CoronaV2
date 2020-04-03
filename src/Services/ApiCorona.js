@@ -30,14 +30,9 @@ class ApiCorona {
   /**
    * stats detail country by country-code and date
    */
-  async getStatsCountryByCodeAndDate(countryCode) {
-    // return axios.get(
-    //   `https://api.coronatracker.com/v3/analytics/trend/country?countryCode=${countryCode}&startDate=2020-${month}-${
-    //     date - 7
-    //   }&endDate=2020-${month}-${date}`,
-    // );
+  async getStatsCountryByCodeAndDate(countryCode, startDate, endDate) {
     return axios.get(
-      `https://api.coronatracker.com/v3/analytics/trend/country?countryCode=${countryCode}&startDate=2020-03-20&endDate=2020-04-03`,
+      `https://api.coronatracker.com/v3/analytics/trend/country?countryCode=${countryCode}&startDate=${startDate}&endDate=${endDate}`,
     );
   }
 

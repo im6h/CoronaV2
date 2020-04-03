@@ -13,6 +13,7 @@ import colors from '../../Themes/colors';
 import {observer, inject} from 'mobx-react';
 import accounting from 'accounting';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
+import moment from 'moment';
 @inject('statsStore')
 @observer
 class LaunchScreen extends React.Component {
@@ -46,7 +47,7 @@ class LaunchScreen extends React.Component {
     });
   };
   changeText = () => {
-    let filterData = this.props.statsStore.statsTopCountry.filter((country) => {
+    let filterData = this.props.statsStore.statsTopCountry.filter(country => {
       return String(country.country)
         .toLowerCase()
         .includes(this.state.textSearch.toLowerCase());
@@ -71,6 +72,7 @@ class LaunchScreen extends React.Component {
     let recovered = accounting.formatNumber(
       this.props.statsStore.statsGlobal.totalRecovered,
     );
+
     return (
       <View style={styles.container}>
         <View style={styles.searchInput}>
@@ -84,7 +86,7 @@ class LaunchScreen extends React.Component {
             ref="textInput"
             style={styles.input}
             placeholder="Search country"
-            onChangeText={(text) => {
+            onChangeText={text => {
               this.setState(
                 {
                   textSearch: text,

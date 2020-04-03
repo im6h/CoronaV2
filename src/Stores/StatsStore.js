@@ -39,10 +39,12 @@ class StatsStore {
     }
   }
 
-  @action async getStatsCountryByCodeAndDate(countryCode) {
+  @action async getStatsCountryByCodeAndDate(countryCode, startDate, endDate) {
     try {
       const response = await apiCorona.getStatsCountryByCodeAndDate(
         countryCode,
+        startDate,
+        endDate,
       );
       if (response.status === 200 && response.data) {
         this.statsCountryByCodeAndDate = response.data;
