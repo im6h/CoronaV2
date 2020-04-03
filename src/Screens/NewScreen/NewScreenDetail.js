@@ -5,7 +5,7 @@ class NewScreenDetail extends React.Component {
   constructor(props) {
     super(props);
   }
-  async componentDidMount(): void {}
+  componentDidMount() {}
 
   /**
    * function support

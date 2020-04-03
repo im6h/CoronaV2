@@ -67,6 +67,16 @@ class StatsScreen extends React.Component {
     let dailyDeaths = accounting.formatNumber(
       this.props.statsStore.statsCountryByCode.dailyDeaths,
     );
+    let totalCrit = accounting.formatNumber(
+      this.props.statsStore.statsCountryByCode.totalCritical,
+    );
+    let totalConfirmedPopulation = accounting.formatNumber(
+      this.props.statsStore.statsCountryByCode
+        .totalConfirmedPerMillionPopulation,
+    );
+    let activeCase = accounting.formatNumber(
+      this.props.statsStore.statsCountryByCode.activeCases,
+    );
     const data =
       !_.isEmpty(this.props.statsStore.statsCountryByCodeAndDate) &&
       this.props.statsStore.statsCountryByCodeAndDate;
@@ -202,8 +212,64 @@ class StatsScreen extends React.Component {
         <View style={styles.chart}>
           <View style={styles.chartCountry}>
             {data && <PureChart data={sampleData} type="line" />}
+            <View style={styles.chartDetail}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View
+                  style={{
+                    height: 10,
+                    width: 10,
+                    backgroundColor: colors.red,
+                    marginRight: 4,
+                  }}
+                />
+                <Text>Confirmed</Text>
+              </View>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View
+                  style={{
+                    height: 10,
+                    width: 10,
+                    backgroundColor: colors.gray,
+                    marginRight: 4,
+                  }}
+                />
+                <Text>Deaths</Text>
+              </View>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View
+                  style={{
+                    height: 10,
+                    width: 10,
+                    backgroundColor: colors.green,
+                    marginRight: 4,
+                  }}
+                />
+                <Text>Recovered</Text>
+              </View>
+            </View>
           </View>
-          <View style={styles.talbeCountry}></View>
+          <View style={styles.tableCountry}>
+            <View style={styles.tableCrit}>
+              <Text>Critical Cases treated in ICU</Text>
+              <Text style={styles.textNumber}>{totalCrit}</Text>
+              <Text style={styles.percent}>
+                {accounting.toFixed((totalCrit * 100) / confirmed, 2)}%
+                <Text style={{color: 'black'}}> totals cases</Text>
+              </Text>
+            </View>
+            <View style={styles.tableCrit}>
+              <Text>Daily Confirmed Cases</Text>
+              <Text style={styles.textNumber}>{totalConfirmedPopulation}</Text>
+            </View>
+            <View style={styles.tableCrit}>
+              <Text>Daily Cases Receiving Treatment</Text>
+              <Text style={styles.textNumber}>{activeCase}</Text>
+              <Text style={styles.percent}>
+                {accounting.toFixed((activeCase * 100) / confirmed, 2)}%
+                <Text style={{color: 'black'}}> totals cases</Text>
+              </Text>
+            </View>
+          </View>
         </View>
       </ScrollView>
     );
@@ -240,17 +306,37 @@ const styles = StyleSheet.create({
   },
   chart: {
     flex: 7,
-    ...base.border,
   },
   chartCountry: {
     flex: 3,
+    ...base.border,
     paddingRight: 10,
     paddingTop: 10,
     paddingLeft: 5,
     paddingBottom: 10,
   },
-  talbeCountry: {
+  tableCountry: {
     flex: 3,
+  },
+  chartDetail: {
+    height: 30,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  tableCrit: {
+    flex: 1,
+    flexDirection: 'column',
+    ...base.border,
+    padding: 10,
+    alignItems: 'center',
+  },
+  textNumber: {
+    fontWeight: 'bold',
+    fontSize: fonts.xl,
+  },
+  percent: {
+    color: colors.red,
   },
 });
 export default StatsScreen;

@@ -1,3 +1,5 @@
+/* eslint-disable react/no-string-refs */
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   View,
@@ -13,7 +15,6 @@ import colors from '../../Themes/colors';
 import {observer, inject} from 'mobx-react';
 import accounting from 'accounting';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
-import moment from 'moment';
 @inject('statsStore')
 @observer
 class LaunchScreen extends React.Component {
@@ -52,7 +53,6 @@ class LaunchScreen extends React.Component {
         .toLowerCase()
         .includes(this.state.textSearch.toLowerCase());
     });
-    console.log(filterData);
     this.setState({
       data: filterData,
     });
@@ -63,6 +63,7 @@ class LaunchScreen extends React.Component {
    * @return {*}
    */
   render() {
+    // init value
     let confirmed = accounting.formatNumber(
       this.props.statsStore.statsGlobal.totalConfirmed,
     );
@@ -73,6 +74,7 @@ class LaunchScreen extends React.Component {
       this.props.statsStore.statsGlobal.totalRecovered,
     );
 
+    // render view
     return (
       <View style={styles.container}>
         <View style={styles.searchInput}>
@@ -213,7 +215,7 @@ const styles = StyleSheet.create({
     ...base.border,
   },
   textNumber: {
-    fontSize: fonts.xl,
+    fontSize: fonts.lg,
     fontWeight: 'bold',
     marginBottom: 12,
   },

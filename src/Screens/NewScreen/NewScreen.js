@@ -15,7 +15,7 @@ class NewScreen extends React.Component {
       page: 1,
     };
   }
-  async componentDidMount(): void {
+  async componentDidMount() {
     await this.fetchListNews();
   }
 
@@ -66,7 +66,7 @@ class NewScreen extends React.Component {
             onPress={async () => {
               await this.loadPreNews();
             }}>
-            <Text>{``}</Text>
+            <Text>{''}</Text>
           </TouchableOpacity>
           <Text>{this.state.page}</Text>
           <TouchableOpacity
