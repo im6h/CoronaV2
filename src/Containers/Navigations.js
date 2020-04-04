@@ -5,34 +5,42 @@ import LaunchScreen from '../Screens/LauchScreen/LauchScreen';
 import NewScreen from '../Screens/NewScreen/NewScreen';
 import NewScreenDetail from '../Screens/NewScreen/NewScreenDetail';
 import StatsScreen from '../Screens/StatsScreen/StatsScreen';
+import SettingScreen from '../Screens/SettingScreen/SettingScreen';
 import Icon from 'react-native-vector-icons/EvilIcons';
+import SettingLanguage from '../Screens/SettingScreen/SettingLanguage';
 const Navigations = () => {
-  return (
-    <Router>
-      <Drawer
-        key="drawer"
-        contentComponent={DrawerComponent}
-        drawerIcon={() => {
-          return <Icon name="navicon" size={25} />;
-        }}>
-        <Scene key="rootScene">
-          <Scene
-            key="launchScreen"
-            component={LaunchScreen}
-            initial
-            title="Stats"
-          />
-          <Scene key="newScreen" component={NewScreen} title="News" />
-          <Scene
-            key="newDetail"
-            component={NewScreenDetail}
-            hideNavBar={true}
-            back={true}
-          />
-          <Scene key="statsScreen" component={StatsScreen} back={true} />
-        </Scene>
-      </Drawer>
-    </Router>
-  );
+	return (
+		<Router>
+			<Drawer
+				key="drawer"
+				contentComponent={DrawerComponent}
+				drawerIcon={() => {
+					return <Icon name="navicon" size={25} />;
+				}}>
+				<Scene key="rootScene">
+					<Scene key="launchScreen" component={LaunchScreen} title="Stats" />
+					<Scene key="newScreen" component={NewScreen} title="News" />
+					<Scene key="statsScreen" component={StatsScreen} back={true} />
+					<Scene
+						key="newDetail"
+						component={NewScreenDetail}
+						hideNavBar={true}
+						back={true}
+					/>
+					<Scene
+						initial
+						key="settingScreen"
+						component={SettingScreen}
+						title="Settings"
+					/>
+					<Scene
+						key="settingLanguage"
+						component={SettingLanguage}
+						back={true}
+					/>
+				</Scene>
+			</Drawer>
+		</Router>
+	);
 };
 export default Navigations;
