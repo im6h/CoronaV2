@@ -25,6 +25,7 @@
     "react-native": "0.62.0",
     "react-native-flags": "^1.0.0",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-i18n": "^2.0.15",
     "react-native-pure-chart": "^0.0.24",
     "react-native-reanimated": "^1.7.1",
     "react-native-router-flux": "^4.2.0",

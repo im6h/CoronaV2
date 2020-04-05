@@ -4,7 +4,7 @@ import IconEntypo from 'react-native-vector-icons/Entypo';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import IconFeather from 'react-native-vector-icons/Feather';
 import {Actions} from 'react-native-router-flux';
-
+import I18n from '../Language/i18n';
 const DrawerComponent = () => {
 	return (
 		<View style={styles.container}>
@@ -16,7 +16,7 @@ const DrawerComponent = () => {
 					}}>
 					<View style={styles.action}>
 						<IconIonicons style={styles.iconTab} name="ios-stats" size={25} />
-						<Text style={styles.nameTab}>Stats</Text>
+						<Text style={styles.nameTab}>{I18n.t('stats')}</Text>
 					</View>
 				</TouchableOpacity>
 				<TouchableOpacity
@@ -26,7 +26,7 @@ const DrawerComponent = () => {
 					}}>
 					<View style={styles.action}>
 						<IconEntypo style={styles.iconTab} name="news" size={25} />
-						<Text style={styles.nameTab}>News</Text>
+						<Text style={styles.nameTab}>{I18n.t('news')}</Text>
 					</View>
 				</TouchableOpacity>
 
@@ -37,7 +37,7 @@ const DrawerComponent = () => {
 					}}>
 					<View style={styles.action}>
 						<IconFeather style={styles.iconTab} name="alert-circle" size={25} />
-						<Text style={styles.nameTab}>Stats</Text>
+						<Text style={styles.nameTab}>{I18n.t('about')}</Text>
 					</View>
 				</TouchableOpacity>
 			</View>
@@ -49,7 +49,7 @@ const DrawerComponent = () => {
 					}}>
 					<View style={styles.action}>
 						<IconFeather style={styles.iconTab} name="settings" size={25} />
-						<Text style={styles.nameTab}>Settings</Text>
+						<Text style={styles.nameTab}>{I18n.t('settings')}</Text>
 					</View>
 				</TouchableOpacity>
 			</View>

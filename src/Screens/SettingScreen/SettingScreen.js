@@ -5,6 +5,10 @@ import colors from '../../Themes/colors';
 import base from '../../Themes/base';
 import IconIonIcon from 'react-native-vector-icons/Ionicons';
 import {Actions} from 'react-native-router-flux';
+import I18n from '../../Language/i18n';
+import {inject, observer} from 'mobx-react';
+@inject('languageStore')
+@observer
 class SettingScreen extends React.Component {
 	constructor(props) {
 		super(props);
@@ -25,6 +29,7 @@ class SettingScreen extends React.Component {
 		this.setState({
 			language: language,
 		});
+		this.props.languageStore.changeLanguage(language);
 	};
 	/**
 	 * render view
@@ -43,7 +48,7 @@ class SettingScreen extends React.Component {
 								<TouchableOpacity
 									style={styles.itemLanguage}
 									onPress={() => {
-										this.setLanguage('English');
+										this.setLanguage('en');
 										this.setModalVisiable(false);
 									}}>
 									<Text>English</Text>
@@ -51,7 +56,7 @@ class SettingScreen extends React.Component {
 								<TouchableOpacity
 									style={styles.itemLanguage}
 									onPress={() => {
-										this.setLanguage('Việt Nam');
+										this.setLanguage('vi');
 										this.setModalVisiable(false);
 									}}>
 									<Text>Vietnamese</Text>
@@ -65,9 +70,8 @@ class SettingScreen extends React.Component {
 					onPress={() => {
 						this.setModalVisiable(true);
 					}}>
-					<Text style={styles.textTitle}>Language</Text>
+					<Text style={styles.textTitle}>{I18n.t('language')}</Text>
 					<View style={styles.selected}>
-						<Text style={styles.textLanguage}>{this.state.language}</Text>
 						<IconIonIcon name="ios-arrow-forward" size={25} />
 					</View>
 				</TouchableOpacity>

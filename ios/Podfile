@@ -57,6 +57,8 @@ target 'CoronaV2' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+
   target 'CoronaV2Tests' do
     inherit! :complete
     # Pods for testing

@@ -48,13 +48,11 @@ class LaunchScreen extends React.Component {
 		});
 	};
 	changeText = () => {
-		let filterData = this.props.statsStore.statsTopCountry
-			.slice(1)
-			.filter((country) => {
-				return String(country.country)
-					.toLowerCase()
-					.includes(this.state.textSearch.toLowerCase());
-			});
+		let filterData = this.props.statsStore.statsTopCountry.filter((country) => {
+			return String(country.country)
+				.toLowerCase()
+				.includes(this.state.textSearch.toLowerCase());
+		});
 		this.setState({
 			data: filterData,
 		});
@@ -164,7 +162,7 @@ class LaunchScreen extends React.Component {
 						statsGlobalTopCountry={
 							this.state.data.length > 0
 								? this.state.data
-								: this.props.statsStore.statsTopCountry.slice(1)
+								: this.props.statsStore.statsTopCountry
 						}
 					/>
 				</View>
