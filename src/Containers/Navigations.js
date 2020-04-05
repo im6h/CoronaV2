@@ -7,7 +7,6 @@ import NewScreenDetail from '../Screens/NewScreen/NewScreenDetail';
 import StatsScreen from '../Screens/StatsScreen/StatsScreen';
 import SettingScreen from '../Screens/SettingScreen/SettingScreen';
 import Icon from 'react-native-vector-icons/EvilIcons';
-import SettingLanguage from '../Screens/SettingScreen/SettingLanguage';
 const Navigations = () => {
 	return (
 		<Router>
@@ -32,11 +31,6 @@ const Navigations = () => {
 						key="settingScreen"
 						component={SettingScreen}
 						title="Settings"
-					/>
-					<Scene
-						key="settingLanguage"
-						component={SettingLanguage}
-						back={true}
 					/>
 				</Scene>
 			</Drawer>
