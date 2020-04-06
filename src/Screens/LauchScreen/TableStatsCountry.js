@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import ItemRow from './ItemRow';
 class TableStatsCountry extends React.Component {
   constructor(props) {
@@ -12,8 +12,8 @@ class TableStatsCountry extends React.Component {
           <FlatList
             {...this.props}
             data={this.props.statsGlobalTopCountry}
-            keyExtractor={({item}, index) => index.toString()}
-            renderItem={({item}) => {
+            keyExtractor={({ item }, index) => index.toString()}
+            renderItem={({ item }) => {
               return <ItemRow item={item} />;
             }}
           />

@@ -3,7 +3,7 @@ import vi from './locales/vi';
 import en from './locales/en';
 I18n.fallbacks = true;
 I18n.translations = {
-	vi,
-	en,
+  vi,
+  en,
 };
 export default I18n;

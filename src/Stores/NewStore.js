@@ -1,5 +1,5 @@
 import apiCorona from '../Services/ApiCorona';
-import {action, observable} from 'mobx';
+import { action, observable } from 'mobx';
 class NewStore {
   @observable listNews = [];
   @action async getListNews(offset, language) {

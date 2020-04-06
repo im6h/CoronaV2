@@ -1,5 +1,5 @@
 import apiCorona from '../Services/ApiCorona';
-import {observable, action} from 'mobx';
+import { observable, action } from 'mobx';
 class TravelStore {
   @observable listTravelAlert = [];
   @action async getListTravelAlert() {

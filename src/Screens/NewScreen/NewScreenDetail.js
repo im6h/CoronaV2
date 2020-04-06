@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Text, Image, StyleSheet} from 'react-native';
+import { View, ScrollView, Text, Image, StyleSheet } from 'react-native';
 
 class NewScreenDetail extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class NewScreenDetail extends React.Component {
           <View style={styles.imagePart}>
             <Image
               style={styles.image}
-              source={{uri: this.props.article.urlToImage}}
+              source={{ uri: this.props.article.urlToImage }}
             />
           </View>
           <View style={styles.contentPart}>

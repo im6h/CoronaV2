@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import colors from '../../Themes/colors';
 import fonts from '../../Themes/fonts';
 import Flag from 'react-native-flags';
 import accounting from 'accounting';
-import {Actions} from 'react-native-router-flux';
-const ItemRow = ({item}) => {
+import { Actions } from 'react-native-router-flux';
+const ItemRow = ({ item }) => {
   let flag = item.countryCode;
   let confirmed = accounting.formatNumber(item.totalConfirmed);
   let deaths = accounting.formatNumber(item.totalDeaths);
@@ -14,24 +14,24 @@ const ItemRow = ({item}) => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        Actions.statsScreen({country: item});
+        Actions.statsScreen({ country: item });
       }}>
       <View style={styles.columnCountry}>
         <Flag code={flag} size={32} />
         <Text style={styles.textCountry}>{item.country}</Text>
       </View>
       <View style={styles.columnText}>
-        <Text style={[styles.textNumber, [{color: colors.red}]]}>
+        <Text style={[styles.textNumber, [{ color: colors.red }]]}>
           {confirmed}
         </Text>
       </View>
       <View style={styles.columnText}>
-        <Text style={[styles.textNumber, [{color: colors.gray}]]}>
+        <Text style={[styles.textNumber, [{ color: colors.gray }]]}>
           {deaths}
         </Text>
       </View>
       <View style={styles.columnText}>
-        <Text style={[styles.textNumber, [{color: colors.green}]]}>
+        <Text style={[styles.textNumber, [{ color: colors.green }]]}>
           {recovered}
         </Text>
       </View>

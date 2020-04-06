@@ -1,7 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import NewItem from './NewItem';
-import {inject, observer} from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import colors from '../../Themes/colors';
 @inject('newStore')
 @observer
@@ -62,7 +68,7 @@ class NewScreen extends React.Component {
       return (
         <View style={styles.footer}>
           <TouchableOpacity
-            style={[styles.button, [{borderColor: 'transparent'}]]}
+            style={[styles.button, [{ borderColor: 'transparent' }]]}
             onPress={async () => {
               await this.loadPreNews();
             }}>
@@ -108,9 +114,9 @@ class NewScreen extends React.Component {
           refreshing={this.state.isLoading}
           extraData={this.props.newStore.listNews}
           ListFooterComponent={this.renderFooter()}
-          keyExtractor={({item}, index) => index.toString()}
+          keyExtractor={({ item }, index) => index.toString()}
           data={this.props.newStore.listNews}
-          renderItem={({item}) => {
+          renderItem={({ item }) => {
             return <NewItem item={item} />;
           }}
         />
