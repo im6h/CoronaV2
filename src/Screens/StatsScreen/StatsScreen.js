@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Flag from 'react-native-flags';
@@ -10,7 +9,7 @@ import accounting from 'accounting';
 import moment from 'moment';
 import _ from 'lodash';
 import PureChart from 'react-native-pure-chart';
-
+import i18n from '../../Language/i18n';
 @inject('statsStore')
 @observer
 class StatsScreen extends React.Component {
@@ -139,7 +138,9 @@ class StatsScreen extends React.Component {
         <View style={styles.overview}>
           <View style={styles.country}>
             <Flag code={flag} size={48} />
-            <Text style={styles.countryName}>{country} Overview Stats</Text>
+            <Text style={styles.countryName}>
+              {country} {i18n.t('overviewStats')}
+            </Text>
           </View>
           <View style={styles.countryStats}>
             <View style={[styles.column]}>
@@ -151,13 +152,14 @@ class StatsScreen extends React.Component {
                 }}>
                 {accounting.formatNumber(confirmed)}
               </Text>
-              <Text>Cofirmed</Text>
+              <Text>{i18n.t('confirmed')}</Text>
               <Text
                 style={{
                   color: colors.red,
                   fontSize: fonts.ssm,
                 }}>
-                + {accounting.formatNumber(dailyConfirmed)} since yesterday
+                + {accounting.formatNumber(dailyConfirmed)}{' '}
+                {i18n.t('sinceYesterday')}
               </Text>
             </View>
             <View style={[styles.column]}>
@@ -169,7 +171,7 @@ class StatsScreen extends React.Component {
                 }}>
                 {accounting.formatNumber(recovered)}
               </Text>
-              <Text>Recovered</Text>
+              <Text>{i18n.t('recovered')}</Text>
             </View>
             <View style={[styles.column]}>
               <Text
@@ -180,13 +182,14 @@ class StatsScreen extends React.Component {
                 }}>
                 {accounting.formatNumber(deaths)}
               </Text>
-              <Text>Deaths</Text>
+              <Text>{i18n.t('deaths')}</Text>
               <Text
                 style={{
                   color: colors.gray,
                   fontSize: fonts.ssm,
                 }}>
-                + {accounting.formatNumber(dailyDeaths)} since yesterday
+                + {accounting.formatNumber(dailyDeaths)}{' '}
+                {i18n.t('sinceYesterday')}
               </Text>
             </View>
           </View>
@@ -194,29 +197,29 @@ class StatsScreen extends React.Component {
         <View style={styles.chart}>
           <View style={styles.tableCountry}>
             <View style={styles.tableCrit}>
-              <Text>Critical Cases treated in ICU</Text>
+              <Text>{i18n.t('criticalCases')}</Text>
               <Text style={styles.textNumber}>
                 {accounting.formatNumber(totalCrit)}
               </Text>
               <Text style={styles.percent}>
                 {accounting.toFixed((totalCrit * 100) / confirmed, 2)}%
-                <Text style={{ color: 'black' }}> totals cases</Text>
+                <Text style={{ color: 'black' }}> {i18n.t('totalCases')}</Text>
               </Text>
             </View>
             <View style={styles.tableCrit}>
-              <Text>Daily Confirmed Cases</Text>
+              <Text>{i18n.t('dailyConfirmedCase')}</Text>
               <Text style={styles.textNumber}>
                 {accounting.formatNumber(totalConfirmedPopulation)}
               </Text>
             </View>
             <View style={styles.tableCrit}>
-              <Text>Daily Cases Receiving Treatment</Text>
+              <Text>{i18n.t('dailyCasesTreament')}</Text>
               <Text style={styles.textNumber}>
                 {accounting.formatNumber(activeCase)}
               </Text>
               <Text style={styles.percent}>
                 {accounting.toFixed((activeCase * 100) / confirmed, 2)}%
-                <Text style={{ color: 'black' }}> totals cases</Text>
+                <Text style={{ color: 'black' }}> {i18n.t('totalCases')}</Text>
               </Text>
             </View>
           </View>
@@ -232,7 +235,7 @@ class StatsScreen extends React.Component {
                     marginRight: 4,
                   }}
                 />
-                <Text>Confirmed</Text>
+                <Text>{i18n.t('confirmed')}</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View
@@ -243,7 +246,7 @@ class StatsScreen extends React.Component {
                     marginRight: 4,
                   }}
                 />
-                <Text>Deaths</Text>
+                <Text>{i18n.t('deaths')}</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View
@@ -254,7 +257,7 @@ class StatsScreen extends React.Component {
                     marginRight: 4,
                   }}
                 />
-                <Text>Recovered</Text>
+                <Text>{i18n.t('recovered')}</Text>
               </View>
             </View>
           </View>

@@ -5,6 +5,7 @@ import fonts from '../../Themes/fonts';
 import Flag from 'react-native-flags';
 import accounting from 'accounting';
 import { Actions } from 'react-native-router-flux';
+import i18n from '../../Language/i18n';
 const ItemRow = ({ item }) => {
   let flag = item.countryCode;
   let confirmed = accounting.formatNumber(item.totalConfirmed);

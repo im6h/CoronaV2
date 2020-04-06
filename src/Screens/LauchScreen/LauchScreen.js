@@ -15,6 +15,7 @@ import colors from '../../Themes/colors';
 import { observer, inject } from 'mobx-react';
 import accounting from 'accounting';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
+import I18n from '../../Language/i18n';
 @inject('statsStore')
 @observer
 class LaunchScreen extends React.Component {
@@ -87,7 +88,7 @@ class LaunchScreen extends React.Component {
           <TextInput
             ref="textInput"
             style={styles.input}
-            placeholder="Search country"
+            placeholder={I18n.t('searchCountry')}
             onChangeText={(text) => {
               this.setState(
                 {
@@ -117,7 +118,7 @@ class LaunchScreen extends React.Component {
                     marginRight: 4,
                   }}
                 />
-                <Text>Confirmed</Text>
+                <Text>{I18n.t('confirmed')}</Text>
               </View>
             </View>
             <View style={styles.deathCard}>
@@ -133,7 +134,7 @@ class LaunchScreen extends React.Component {
                     marginRight: 4,
                   }}
                 />
-                <Text>Deaths</Text>
+                <Text>{I18n.t('deaths')}</Text>
               </View>
             </View>
             <View style={styles.recoveredCard}>
@@ -149,7 +150,7 @@ class LaunchScreen extends React.Component {
                     marginRight: 4,
                   }}
                 />
-                <Text>Recovered</Text>
+                <Text>{I18n.t('recovered')}</Text>
               </View>
             </View>
           </View>
