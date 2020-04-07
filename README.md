@@ -4,7 +4,7 @@
 
 ## App Review
 
-![App Review](dist/images/app.png 'App review')
+![App Review](dist/images/appreview.png 'App Review')
 
 ## App Relese
 
