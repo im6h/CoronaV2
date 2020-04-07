@@ -7,11 +7,11 @@ export default {
 	confirmed: 'Nhiễm bệnh',
 	deaths: 'Tử vong',
 	recovered: 'Phục hồi',
-	searchCountry: 'Tìm nước',
+	searchCountry: 'Tìm quốc gia',
 	overviewStats: 'Thống kê tổng quan',
 	totalCases: 'tổng số trường hợp',
 	dailyConfirmedCase: 'Số ca nhiễm bệnh trong 1 ngày',
 	criticalCases: 'Số ca nguy kịch',
-	dailyCasesTreament: 'Số ca trong 1 ngày',
+	dailyCasesTreament: 'Các trường hợp trong ngày được điều trị',
 	sinceYesterday: 'từ hôm qua',
 };

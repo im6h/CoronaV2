@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import fonts from '../../Themes/fonts';
 import base from '../../Themes/base';
 import IconIonIcon from 'react-native-vector-icons/Ionicons';
-import I18n from '../../Language/i18n';
+import i18n from '../../Language/i18n';
 import { inject, observer } from 'mobx-react';
 @inject('languageStore')
 @observer
@@ -23,6 +23,7 @@ class SettingScreen extends React.Component {
 		});
 	};
 	setLanguage = async (language) => {
+		i18n.locale = language;
 		await this.props.languageStore.storeLanguageToStorage(language);
 	};
 
@@ -65,7 +66,7 @@ class SettingScreen extends React.Component {
 					onPress={() => {
 						this.setModalVisiable(true);
 					}}>
-					<Text style={styles.textTitle}>{I18n.t('language')}</Text>
+					<Text style={styles.textTitle}>{i18n.t('language')}</Text>
 					<View style={styles.selected}>
 						<IconIonIcon name="ios-arrow-forward" size={25} />
 					</View>
