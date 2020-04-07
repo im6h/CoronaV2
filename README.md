@@ -4,7 +4,10 @@
 
 ## App Review
 
-![App Review](dist/images/app.png 'App review')
+![New](dist/images/new.png 'New screen')
+![Setting](dist/images/setting.png 'Setting screen')
+![Stats](dist/images/stats.png 'Stats screen')
+![Country](dist/images/statsCountry.png 'Country screen')
 
 ## App Relese
 
