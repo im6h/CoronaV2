@@ -6,6 +6,8 @@ import NewScreen from '../Screens/NewScreen/NewScreen';
 import NewScreenDetail from '../Screens/NewScreen/NewScreenDetail';
 import StatsScreen from '../Screens/StatsScreen/StatsScreen';
 import SettingScreen from '../Screens/SettingScreen/SettingScreen';
+import SplashScreen from '../Screens/SplashScreen/SplashScreen';
+import AboutScreen from '../Screens/AboutScreen/AboutScreen';
 import Icon from 'react-native-vector-icons/EvilIcons';
 class Navigations extends React.Component {
 	render() {
@@ -18,7 +20,13 @@ class Navigations extends React.Component {
 						return <Icon name="navicon" size={25} />;
 					}}>
 					<Scene key="root">
-						<Scene initial key="launchScreen" component={LaunchScreen} />
+						<Scene
+							initial
+							key="splashScreen"
+							component={SplashScreen}
+							hideNavBar
+						/>
+						<Scene key="launchScreen" component={LaunchScreen} />
 						<Scene key="newScreen" component={NewScreen} />
 						<Scene key="statsScreen" component={StatsScreen} back={true} />
 						<Scene
@@ -28,6 +36,7 @@ class Navigations extends React.Component {
 							back={true}
 						/>
 						<Scene key="settingScreen" component={SettingScreen} />
+						<Scene key="aboutScreen" component={AboutScreen} />
 					</Scene>
 				</Drawer>
 			</Router>

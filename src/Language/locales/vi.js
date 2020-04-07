@@ -14,4 +14,7 @@ export default {
 	criticalCases: 'Số ca nguy kịch',
 	dailyCasesTreament: 'Các trường hợp trong ngày được điều trị',
 	sinceYesterday: 'từ hôm qua',
+	aboutCoronaTracker: 'Giới thiệu',
+	aboutContent:
+		'CORONATRACKER.com là một dự án cộng đồng với hơn 460 tình nguyện viên từ khắp nơi trên thế giới, bao gồm chuyên gia khoa học kĩ thuật, chuyên gia y tế, thiết kế UI/UX, lập trình viên fullstack, ...',
 };

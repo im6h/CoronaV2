@@ -29,17 +29,6 @@ const DrawerComponent = () => {
 						<Text style={styles.nameTab}>{I18n.t('news')}</Text>
 					</View>
 				</TouchableOpacity>
-
-				<TouchableOpacity
-					style={styles.tab}
-					onPress={() => {
-						Actions.replace('alertScreen', {});
-					}}>
-					<View style={styles.action}>
-						<IconFeather style={styles.iconTab} name="alert-circle" size={25} />
-						<Text style={styles.nameTab}>{I18n.t('about')}</Text>
-					</View>
-				</TouchableOpacity>
 			</View>
 			<View style={styles.bot}>
 				<TouchableOpacity
@@ -50,6 +39,16 @@ const DrawerComponent = () => {
 					<View style={styles.action}>
 						<IconFeather style={styles.iconTab} name="settings" size={25} />
 						<Text style={styles.nameTab}>{I18n.t('settings')}</Text>
+					</View>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.tab}
+					onPress={() => {
+						Actions.replace('aboutScreen', {});
+					}}>
+					<View style={styles.action}>
+						<IconFeather style={styles.iconTab} name="alert-circle" size={25} />
+						<Text style={styles.nameTab}>{I18n.t('about')}</Text>
 					</View>
 				</TouchableOpacity>
 			</View>
