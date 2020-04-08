@@ -5,10 +5,14 @@ import {
 	StyleSheet,
 	FlatList,
 	TouchableOpacity,
+	BackHandler,
+	ToastAndroid,
 } from 'react-native';
 import NewItem from './NewItem';
 import { inject, observer } from 'mobx-react';
 import colors from '../../Themes/colors';
+import { Actions } from 'react-native-router-flux';
+import i18n from '../../Language/i18n';
 @inject('newStore')
 @observer
 class NewScreen extends React.Component {
@@ -23,11 +27,32 @@ class NewScreen extends React.Component {
 	}
 	async componentDidMount() {
 		await this.fetchListNews();
+		this.BackHandler = BackHandler.addEventListener(
+			'hardwareBackPress',
+			this.backAction,
+		);
 	}
 
 	/**
 	 * function support
 	 */
+	backAction = () => {
+		if (Actions.currentScene === 'newScreen') {
+			if (this.state.doubleBackToExitPressedOnce) {
+				BackHandler.exitApp();
+			} else {
+				ToastAndroid.show('Press back again to exit', ToastAndroid.SHORT);
+				this.setState({ doubleBackToExitPressedOnce: true });
+				setTimeout(() => {
+					this.setState({ doubleBackToExitPressedOnce: false });
+				}, 2000);
+			}
+			return true;
+		} else {
+			console.log(Actions.currentScene);
+			return false;
+		}
+	};
 	fetchListNews = async () => {
 		this.props.newStore.getListNews(this.state.offset, 'vi').then(() => {
 			this.setState({
@@ -80,7 +105,7 @@ class NewScreen extends React.Component {
 						onPress={async () => {
 							await this.loadNextNews();
 						}}>
-						<Text style={styles.action}>Next</Text>
+						<Text style={styles.action}>{i18n.t('next')}</Text>
 					</TouchableOpacity>
 				</View>
 			);
@@ -92,7 +117,7 @@ class NewScreen extends React.Component {
 						onPress={async () => {
 							await this.loadPreNews();
 						}}>
-						<Text style={styles.action}>Previous</Text>
+						<Text style={styles.action}>{i18n.t('previous')}</Text>
 					</TouchableOpacity>
 					<Text>{this.state.page}</Text>
 					<TouchableOpacity
@@ -100,7 +125,7 @@ class NewScreen extends React.Component {
 						onPress={async () => {
 							await this.loadNextNews();
 						}}>
-						<Text style={styles.action}>Next</Text>
+						<Text style={styles.action}>{i18n.t('next')}</Text>
 					</TouchableOpacity>
 				</View>
 			);

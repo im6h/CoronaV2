@@ -6,6 +6,7 @@ import {
 	TextInput,
 	TouchableOpacity,
 	BackHandler,
+	ToastAndroid,
 } from 'react-native';
 import TableStatsCountry from './TableStatsCountry';
 import fonts from '../../Themes/fonts';
@@ -15,7 +16,7 @@ import { observer, inject } from 'mobx-react';
 import accounting from 'accounting';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import i18n from '../../Language/i18n';
-import { Actions } from 'react-native-router-flux';
+import { Actions, Scene } from 'react-native-router-flux';
 @inject('statsStore')
 @observer
 class LaunchScreen extends React.Component {
@@ -25,26 +26,35 @@ class LaunchScreen extends React.Component {
 			isLoading: true,
 			data: [],
 			textSearch: '',
+			doubleBackToExitPressedOnce: false,
 		};
 	}
-	componentDidMount() {
+	async componentDidMount() {
+		Actions.drawerClose();
 		this.BackHandler = BackHandler.addEventListener(
 			'hardwareBackPress',
 			this.backAction,
 		);
+		await this.triggerUpdate();
 	}
 
 	/**
 	 * function support
 	 */
 	backAction = () => {
-		if (
-			Actions.currentScene === 'launchScreen' ||
-			Actions.currentScene === 'newScreen' ||
-			Actions.currentScene === 'settingScreen' ||
-			Actions.currentScene === 'aboutScreen'
-		) {
-			BackHandler.exitApp();
+		if (Actions.currentScene === 'launchScreen') {
+			if (this.state.doubleBackToExitPressedOnce) {
+				BackHandler.exitApp();
+			} else {
+				ToastAndroid.show('Press back again to exit', ToastAndroid.SHORT);
+				this.setState({ doubleBackToExitPressedOnce: true });
+				setTimeout(() => {
+					this.setState({ doubleBackToExitPressedOnce: false });
+				}, 2000);
+			}
+			return true;
+		} else {
+			return false;
 		}
 	};
 	triggerUpdate = async () => {
