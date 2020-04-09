@@ -1,6 +1,5 @@
 import { observable, action } from 'mobx';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Actions } from 'react-native-router-flux';
 class LanguageStore {
   @observable language = '';
   @action async readLanguageFromStorage() {

@@ -15,8 +15,8 @@ export default {
   dailyCasesTreament: 'Daily Cases Receiving Treatment',
   sinceYesterday: 'since yesterday',
   aboutCoronaTracker: 'About',
-	next:'Next',
-	previous:'Previous',
+  next: 'Next',
+  previous: 'Previous',
   aboutContent:
     'CORONATRACKER.com is a community-based project powered by over 460 volunteers from across the globe, ranging from data scientists, medical professionals, UI/UX designers, fullstack developers, to the general public.',
 };
